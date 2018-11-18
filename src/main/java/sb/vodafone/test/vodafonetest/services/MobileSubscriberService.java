@@ -46,9 +46,9 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 			MobileSubscriber mobileSubscriberReceived) throws NumberInvalidException {
 		if (mobileSubscriberReceived != null && mobileSubscriberFromDB != null) 
 		{
-			if (mobileSubscriberReceived.getMsisdn() != mobileSubscriberFromDB.getMsisdn()
-					&& mobileSubscriberReceived.getCustomer_id_owner() != mobileSubscriberFromDB.getCustomer_id_owner()
-					&& mobileSubscriberReceived.getCustomer_id_user() != mobileSubscriberFromDB.getCustomer_id_user()) 
+			if (mobileSubscriberReceived.getMsisdn().toString() != mobileSubscriberFromDB.getMsisdn().toString()
+					|| mobileSubscriberReceived.getCustomer_id_owner() != mobileSubscriberFromDB.getCustomer_id_owner()
+					|| mobileSubscriberReceived.getCustomer_id_user() != mobileSubscriberFromDB.getCustomer_id_user()) 
 			{
 				throw new NumberInvalidException("Data received not consistennt with data in the system");
 			}
@@ -70,15 +70,19 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 	}
 
 	@Override
+	public MobileSubscriber GetBySpecification(MobileSubscriber searchParameters) {	
+		Specification<MobileSubscriber> spec = new MobileSubscriberSpecification(searchParameters);
+		List<MobileSubscriber> _result = _mobileSubscriberRepo.findAll(spec);
+		
+		if(_result != null && !_result.isEmpty())
+			return _result.get(0);
+		else
+			return null;
+	}
+	
+	@Override
 	public MobileSubscriber GetByID(Long subscriberID) {
 		
-		MobileSubscriber filter = new MobileSubscriber();
-		filter.setMsisdn("35679797979");
-			
-		Specification<MobileSubscriber> spec = new MobileSubscriberSpecification(filter);
-
-	    List<MobileSubscriber> result = _mobileSubscriberRepo.findAll(spec);
-	    
 		Optional<MobileSubscriber> _optMS = _mobileSubscriberRepo.findById(subscriberID);
 		if (_optMS.isPresent())
 			return _optMS.get();
@@ -118,6 +122,7 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 			throws PhoneNumberFormatException, NumberInvalidException {
 		MobileSubscriber _ms = GetByID(mobileSubscriber.getId());
 		MobileSubscriber _savedMobileSubscriber = null;
+		
 		if (_ms != null) {
 			mobileSubscriber.setMsisdn(FormatNumberToE164(mobileSubscriber.getMsisdn()));
 			CheckObjectValidityWithDB(_ms, mobileSubscriber);

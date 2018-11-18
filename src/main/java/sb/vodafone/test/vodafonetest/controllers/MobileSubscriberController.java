@@ -11,6 +11,7 @@ import sb.vodafone.test.vodafonetest.Exceptions.NumberInvalidException;
 import sb.vodafone.test.vodafonetest.Exceptions.NumberNotFoundException;
 import sb.vodafone.test.vodafonetest.Exceptions.PhoneNumberFormatException;
 import sb.vodafone.test.vodafonetest.entities.MobileSubscriber;
+import sb.vodafone.test.vodafonetest.entities.SearchCriteria;
 import sb.vodafone.test.vodafonetest.services.*;
 
 @RestController
@@ -28,17 +29,28 @@ public class MobileSubscriberController {
 		return _subscribers;
 	}
 
-	@GetMapping("/api/mobileSubscribers/{subscriberId}/{subscriberNo}/{customerId}/{ownerId}")
-	public MobileSubscriber GetByID(@PathVariable(name="subscriberId") Long subscriberId,
-			@PathVariable(name="subscriberNo") String subscriberNo,
-			@PathVariable(name="customerId") Integer customerId,
-			@PathVariable(name="ownerId") Integer ownerId) {
+	@PostMapping("/api/mobileSubscribers")
+	public ResponseEntity<?> Search(@RequestBody SearchCriteria searchCriteria) throws PhoneNumberFormatException, NumberNotFoundException {
 		
+		String _msisdn = searchCriteria.getMsisdn();
 		
-		return msService.GetByID(subscriberId);
+		searchCriteria.setMsisdn((_msisdn != null && !_msisdn.isEmpty()) ? msService.FormatNumberToE164(_msisdn) : "");
+		MobileSubscriber _searchParam = new MobileSubscriber();
+		_searchParam.setMsisdn(searchCriteria.getMsisdn());
+		_searchParam.setCustomer_id_user(searchCriteria.getCustomer_id_user());
+		_searchParam.setCustomer_id_owner(searchCriteria.getCustomer_id_owner());
+		_searchParam.setId(searchCriteria.getId());
+
+		MobileSubscriber _result = msService.GetBySpecification(_searchParam);
+		
+		if (_result != null) {
+			return ResponseEntity.ok(_result);
+		}
+		else
+			throw new NumberNotFoundException("Mobile not found");
 	}
 
-	@PostMapping("/api/mobileSubscribers")
+	@PostMapping("/api/addMobileSubscriber")
 	public ResponseEntity<?> Add(@Valid @RequestBody MobileSubscriber subscriber) throws PhoneNumberFormatException {
 		MobileSubscriber _savedMobileSubscriber = msService.Save(subscriber);
 		return ResponseEntity.ok(_savedMobileSubscriber);

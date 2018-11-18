@@ -11,6 +11,8 @@ public interface IMobileSubscriberService {
 
 	public MobileSubscriber GetByID(Long subscriberID);
 
+	public MobileSubscriber GetBySpecification(MobileSubscriber searchParameters);
+	
 	public MobileSubscriber Save(MobileSubscriber mobileSubscriber) throws PhoneNumberFormatException;
 
 	public String Delete(MobileSubscriber mobileSubscriber) throws PhoneNumberFormatException, NumberInvalidException;
