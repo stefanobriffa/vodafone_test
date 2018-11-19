@@ -8,6 +8,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 @SuppressWarnings("serial")
 public class MobileSubscriberSpecification implements Specification<MobileSubscriber> {
@@ -23,13 +24,14 @@ public class MobileSubscriberSpecification implements Specification<MobileSubscr
 	public Predicate toPredicate(Root<MobileSubscriber> root, CriteriaQuery<?> cq,
 			CriteriaBuilder cb) {
 		
-		Predicate p = cb.disjunction();
+		Predicate p = cb.conjunction();
 
 		if (filter.getId() != null) {
 			p.getExpressions().add(cb.equal(root.get("Id"), filter.getId()));
 		}
 		
-		if (filter.getMsisdn() != null && filter.getMsisdn().trim() != "") {
+		
+		if (StringUtils.hasText(filter.getMsisdn())) {
 			p.getExpressions().add(cb.and(
 					cb.equal(root.get("msisdn"), filter.getMsisdn().trim())
 				));
