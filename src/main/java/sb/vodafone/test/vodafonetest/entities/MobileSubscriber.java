@@ -49,6 +49,16 @@ public class MobileSubscriber {
 		this.service_start_date = service_start_date;
 	}
 
+	public MobileSubscriber(String msisdn, Integer customer_id_owner, Integer customer_id_user,
+			ServiceType service_type, Long service_start_date) {
+		super();
+		this.msisdn = msisdn;
+		this.customer_id_owner = customer_id_owner;
+		this.customer_id_user = customer_id_user;
+		this.service_type = service_type;
+		this.service_start_date = service_start_date;
+	}
+	
 	public Long getId() {
 		return Id;
 	}
