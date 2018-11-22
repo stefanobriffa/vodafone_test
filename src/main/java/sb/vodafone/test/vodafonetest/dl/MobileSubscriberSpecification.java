@@ -40,7 +40,7 @@ public class MobileSubscriberSpecification implements Specification<MobileSubscr
 		if (filter.getCustomer_id_owner() != null) {
 			p.getExpressions().add(cb.and(
 					cb.equal(root.get("customer_id_owner"), filter.getCustomer_id_owner())
-				));
+				));			
 		}
 		
 		if (filter.getCustomer_id_user() != null) {

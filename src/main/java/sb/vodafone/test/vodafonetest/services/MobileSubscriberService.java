@@ -46,8 +46,8 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 			MobileSubscriber mobileSubscriberReceived) throws NumberInvalidException {
 		
 		if (mobileSubscriberReceived != null && mobileSubscriberFromDB != null) 
-		{
-			if (mobileSubscriberReceived.getMsisdn().toString() != mobileSubscriberFromDB.getMsisdn().toString()
+		{			
+			if (!mobileSubscriberReceived.getMsisdn().equals(mobileSubscriberFromDB.getMsisdn())
 					|| mobileSubscriberReceived.getCustomer_id_owner() != mobileSubscriberFromDB.getCustomer_id_owner()
 					|| mobileSubscriberReceived.getCustomer_id_user() != mobileSubscriberFromDB.getCustomer_id_user()) 
 			{
@@ -114,8 +114,7 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 		else
 			_retval = null;
 
-		return _retval;
-
+		return _retval;		
 	}
 
 	@Override
@@ -131,7 +130,7 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 			_savedMobileSubscriber = _mobileSubscriberRepo.save(_ms);
 		}
 
-		return _savedMobileSubscriber;
+		return _savedMobileSubscriber;	
 	}
 
 }
