@@ -23,12 +23,14 @@ public class MobileSubscriberController {
 	@Autowired
 	private MobileSubscriberService msService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(MobileSubscriberController.class);
+	
 	public void setMobileSubscriberService(MobileSubscriberService mobileSubscriberService) {
 		this.msService = mobileSubscriberService;
 	}
 
 	@GetMapping("/api/mobileSubscribers/GetAll")
-	public List<MobileSubscriber> GetAll() {
+	public List<MobileSubscriber> GetAll() {		
 		List<MobileSubscriber> _subscribers = msService.GetAll();
 		return _subscribers;		
 	}
