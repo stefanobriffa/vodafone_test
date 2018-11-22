@@ -33,7 +33,7 @@ public class MobileSubscriber {
 	
 	@NotNull
 	@Column(name="service_start_date")
-	private Long service_start_date;
+	private long service_start_date;
 	
 	public MobileSubscriber() {
 	}
@@ -89,7 +89,10 @@ public class MobileSubscriber {
 	public void setService_type(ServiceType service_type) {
 		this.service_type = service_type;
 	}
-	public Long getService_start_date() {
+	public long getService_start_date() {
 		return service_start_date;
+	}
+	public void setService_start_date(long service_start_date) {
+		this.service_start_date = service_start_date;
 	}
 }

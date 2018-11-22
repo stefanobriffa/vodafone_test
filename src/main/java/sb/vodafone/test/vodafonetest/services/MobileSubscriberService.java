@@ -1,5 +1,6 @@
 package sb.vodafone.test.vodafonetest.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,6 +95,7 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 	@Override
 	public MobileSubscriber Save(MobileSubscriber mobileSubscriber) throws PhoneNumberFormatException {
 		mobileSubscriber.setMsisdn(FormatNumberToE164(mobileSubscriber.getMsisdn()));
+		mobileSubscriber.setService_start_date(Instant.now().toEpochMilli());
 		MobileSubscriber _savedMobileSubscriber = _mobileSubscriberRepo.save(mobileSubscriber);
 
 		return _savedMobileSubscriber;
