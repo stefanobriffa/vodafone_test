@@ -57,7 +57,7 @@ public class MobileSubscriberController {
 			return ResponseEntity.badRequest().body("No Search Criteria Specified");			
 	}
 
-	@PostMapping("/api/MobileSubscriber/Add")
+	@PostMapping("/api/mobileSubscribers/Add")
 	@ResponseBody
 	public ResponseEntity<?> Add(@Valid @RequestBody MobileSubscriber subscriber) throws PhoneNumberFormatException {		
 		if(subscriber != null)

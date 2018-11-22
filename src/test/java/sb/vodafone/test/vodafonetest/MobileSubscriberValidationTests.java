@@ -36,7 +36,7 @@ public class MobileSubscriberValidationTests {
     public void InvalidMobileSubscriber() {
     	MobileSubscriber _ms1 =  new MobileSubscriber();
     	
-    	_ms1.setCustomer_id_owner(1);
+    	_ms1.setCustomer_id_owner(0);
     	_ms1.setCustomer_id_user(1);
     	_ms1.setMsisdn("79030003");
     	_ms1.setService_type(ServiceType.MOBILE_PREPAID);

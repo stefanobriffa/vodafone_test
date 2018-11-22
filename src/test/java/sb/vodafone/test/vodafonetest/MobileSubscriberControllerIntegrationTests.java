@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -77,7 +76,7 @@ public class MobileSubscriberControllerIntegrationTests {
 
 		String expected = "";
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/MobileSubscriber/Add")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/mobileSubscribers/Add")
 				.accept(MediaType.APPLICATION_JSON).content(expected)
 				.contentType(MediaType.APPLICATION_JSON);
 
@@ -91,7 +90,7 @@ public class MobileSubscriberControllerIntegrationTests {
 
 		String expected  = "{\"msisdn\":\"79030003\",\"customer_id_owner\":1,\"customer_id_user\":1,\"service_type\":\"MOBILE_POSTPAID\",\"service_start_date\":389456789,\"id\":null}";
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/MobileSubscriber/Add")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/mobileSubscribers/Add")
 				.accept(MediaType.APPLICATION_JSON).content(expected)
 				.contentType(MediaType.APPLICATION_JSON);
 

@@ -21,10 +21,12 @@ public class MobileSubscriber {
 	
 	@NotNull(message="No owner id specified")
 	@Column(name="customer_id_owner")
+	@Min(1)
 	private Integer customer_id_owner;
 	
 	@NotNull(message="No user id specified")
 	@Column(name="customer_id_user")
+	@Min(1)
 	private Integer customer_id_user;
 	
 	@NotNull
