@@ -42,8 +42,9 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 		return _retval;
 	}
 
-	public void CheckObjectValidityWithDB(MobileSubscriber mobileSubscriberFromDB,
+	public boolean CheckObjectValidityWithDB(MobileSubscriber mobileSubscriberFromDB,
 			MobileSubscriber mobileSubscriberReceived) throws NumberInvalidException {
+		
 		if (mobileSubscriberReceived != null && mobileSubscriberFromDB != null) 
 		{
 			if (mobileSubscriberReceived.getMsisdn().toString() != mobileSubscriberFromDB.getMsisdn().toString()
@@ -53,10 +54,10 @@ public class MobileSubscriberService implements IMobileSubscriberService {
 				throw new NumberInvalidException("Data received not consistennt with data in the system");
 			}
 		}
-		else
-		{
-			throw new NumberInvalidException("Invalid parameters");
-		}
+		else		
+			throw new NumberInvalidException("Invalid parameters");		
+		
+		return true;
 		
 	}
 
