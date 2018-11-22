@@ -38,8 +38,9 @@ public class MobileSubscriberValidationTests {
     	
     	_ms1.setCustomer_id_owner(1);
     	_ms1.setCustomer_id_user(1);
+    	_ms1.setMsisdn("79030003");
+    	_ms1.setService_type(ServiceType.MOBILE_PREPAID);
         Set<ConstraintViolation<MobileSubscriber>> violations = validator.validate(_ms1);
         Assert.assertFalse(violations.isEmpty());
-    }
-    
+    }    
 }

@@ -61,7 +61,7 @@ public class MobileSubscriberServiceTests {
 			_msg = e.getMessage();
 		}
 
-		Assert.assertEquals("Error while parsing mobile number", _msg);
+		Assert.assertEquals("Error while parsing mobile number", _msg);		
 	}
 
 	@Test(expected = NumberInvalidException.class)

@@ -30,7 +30,7 @@ public class MobileSubscriberController {
 	@GetMapping("/api/mobileSubscribers/GetAll")
 	public List<MobileSubscriber> GetAll() {
 		List<MobileSubscriber> _subscribers = msService.GetAll();
-		return _subscribers;
+		return _subscribers;		
 	}
 
 	@PostMapping("/api/mobileSubscribers/Search")
@@ -58,7 +58,7 @@ public class MobileSubscriberController {
 			return ResponseEntity.badRequest().body("No Search Criteria Specified");			
 	}
 
-	@PostMapping("/api/addMobileSubscriber/Add")
+	@PostMapping("/api/MobileSubscriber/Add")
 	@ResponseBody
 	public ResponseEntity<?> Add(@Valid @RequestBody MobileSubscriber subscriber) throws PhoneNumberFormatException {		
 		if(subscriber != null)

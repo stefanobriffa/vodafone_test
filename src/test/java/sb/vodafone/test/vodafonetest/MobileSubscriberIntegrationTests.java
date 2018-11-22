@@ -23,13 +23,13 @@ public class MobileSubscriberIntegrationTests {
 	@TestConfiguration
     static class MobileSubscriberTestContextConfiguration {
 		@Bean
-        public MobileSubscriberService mobileSubscriberServiceMock() {
+        public MobileSubscriberService mobileSubscriberService() {
             return new MobileSubscriberService();
         }						
     }        
 
     @Autowired
-    private MobileSubscriberService mobileSubscriberServiceMock;
+    private MobileSubscriberService mobileSubscriberService;
  
     @MockBean
     private IMobileSubscriberRepo mockRepository;       
@@ -41,7 +41,7 @@ public class MobileSubscriberIntegrationTests {
      
     	Mockito.when(mockRepository.findById((long) 1)).thenReturn(Optional.of(_ms));  
     	              
-        MobileSubscriber _msReturned = mobileSubscriberServiceMock.GetByID((long)1);
+        MobileSubscriber _msReturned = mobileSubscriberService.GetByID((long)1);
         Assert.assertEquals("79030003", _msReturned.getMsisdn());
     }    
     
@@ -59,7 +59,7 @@ public class MobileSubscriberIntegrationTests {
     	
     	Mockito.when(mockRepository.findAll()).thenReturn(_mobileList);  
     	              
-    	List<MobileSubscriber> _msListReturned = mobileSubscriberServiceMock.GetAll();
+    	List<MobileSubscriber> _msListReturned = mobileSubscriberService.GetAll();
         Assert.assertEquals(2, _msListReturned.size());
     }    
 }
