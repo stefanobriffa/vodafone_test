@@ -9,7 +9,8 @@ an H2 in-memory.
 ```
 HTTP GET /api/mobileSubscribers/GetAll
 
-Requires no parameters.  Will return all the mobile numbers in the database or an empty array in cases were nno numbers exist
+Requires no parameters.  Will return all the mobile numbers in the database or an empty array in cases were no 
+numbers exist
 ```
 
 ```
@@ -57,7 +58,8 @@ Sample JSON required
 ```
 HTTP DELETE /api/mobileSubscribers/Delete
 
-Requires an JSON object containning all data required find and delete the requested mobile number.  The endpoint will return 
+Requires an JSON object containning all data required find and delete the requested mobile number.  The endpoint 
+will return 
 
 * the mobile number inserted (is successful)
 * a BadRequest if no parameters are passed
@@ -79,7 +81,8 @@ Sample JSON required
 ```
 HTTP PUT  /api/mobileSubscribers/Update
 
-Requires an JSON object containning all data required find and update the requested mobile number.  The endpoint will return 
+Requires an JSON object containning all data required find and update the requested mobile number.  The endpoint 
+will return 
 
 * the mobile number inserted (is successful)
 * a BadRequest if no parameters are passed
@@ -98,6 +101,16 @@ Sample JSON required
 }
 ```
 
+## Security
+
+Enable the dependency to secure the REST API
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+```
 
 ## Built With
 
@@ -107,26 +120,3 @@ Sample JSON required
 * [Eclipse] (https://www.eclipse.org/) - IDE
 * Spring Data JPA to store and query the data in/from an H2 in-memory database
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
